@@ -18,13 +18,16 @@ defmodule SmsPartCounter do
     |> Enum.count()
   end
 
+  @spec gsm_part_count(binary) :: integer()
   def gsm_part_count(sms) when is_binary(sms) do
+    sms_char_count = count(sms)
+
     cond do
-      count(sms) < 161 ->
+      sms_char_count < 161 ->
         1
 
-      count(sms) > 160 ->
-        div(count(sms), 153) + if rem(count(sms), 153) == 0, do: 0, else: 1
+      sms_char_count > 160 ->
+        div(sms_char_count, 153) + if rem(sms_char_count, 153) == 0, do: 0, else: 1
     end
   end
 end
