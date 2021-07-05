@@ -1,18 +1,6 @@
 defmodule SmsPartCounter do
   @moduledoc """
-  Documentation for `SmsPartCounter`.
+  Module for detecting which encoding is being used and the character count of SMS text.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> SmsPartCounter.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
