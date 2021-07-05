@@ -21,13 +21,17 @@ defmodule SmsPartCounter do
   @spec gsm_part_count(binary) :: integer()
   def gsm_part_count(sms) when is_binary(sms) do
     sms_char_count = count(sms)
+    part_count(sms_char_count, 160, 153)
+  end
 
+  defp part_count(sms_char_count, single_count, multi_count) do
     cond do
-      sms_char_count < 161 ->
+      sms_char_count < single_count + 1 ->
         1
 
-      sms_char_count > 160 ->
-        div(sms_char_count, 153) + if rem(sms_char_count, 153) == 0, do: 0, else: 1
+      sms_char_count > single_count ->
+        div(sms_char_count, multi_count) +
+          if rem(sms_char_count, multi_count) == 0, do: 0, else: 1
     end
   end
 end
