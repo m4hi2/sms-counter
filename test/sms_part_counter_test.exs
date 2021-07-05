@@ -25,15 +25,15 @@ defmodule SmsPartCounterTest do
 
   describe "GSM 7bit encoding SMS part counter" do
     test "a 160 length message is considered 1 part" do
-      assert SmsPartCounter.gsm_part_count("Lorem ipsum dolor sit amet,\
-       consectetuer adipiscing elit. Aenean commodo ligula eget dolor. \
-       Aenean massa. Cum sociis natoque penatibus et magnis dis parturient.") == 1
+      assert SmsPartCounter.gsm_part_count("Lorem ipsum dolor sit amet, \
+consectetuer adipiscing elit. Aenean commodo ligula eget dolor. \
+Aenean massa. Cum sociis natoque penatibus et magnis dis parturient.") == 1
     end
 
     test "a 170 length message is considered 2 part" do
       assert SmsPartCounter.gsm_part_count("Lorem ipsum dolor sit amet, \
-      consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean\
-       massa. Cum sociis natoque penatibus et magnis dis parturient montes, na") == 2
+consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean\
+massa. Cum sociis natoque penatibus et magnis dis parturient montes, na") == 2
     end
 
     test "a 20 length message is considered 1 part" do
@@ -42,11 +42,11 @@ defmodule SmsPartCounterTest do
 
     test "a 306 length message is considered 2 part" do
       assert SmsPartCounter.gsm_part_count("Lorem ipsum dolor sit amet, \
-      consectetuer adipiscing elit. Aenean commodo ligula eget dolor. \
-      Aenean massa. Cum sociis natoque penatibus et magnis dis \
-      parturient montes, nascetur ridiculus mus. Donec quam felis, \
-      ultricies nec, pellentesque eu, pretium quis, sem. \
-      Nulla consequat massa quis enim. Donec pede j") == 2
+consectetuer adipiscing elit. Aenean commodo ligula eget dolor. \
+Aenean massa. Cum sociis natoque penatibus et magnis dis \
+parturient montes, nascetur ridiculus mus. Donec quam felis, \
+ultricies nec, pellentesque eu, pretium quis, sem. \
+Nulla consequat massa quis enim. Donec pede j") == 2
     end
   end
 end
