@@ -40,4 +40,26 @@ defmodule SmsPartCounter do
           if rem(sms_char_count, multi_count) == 0, do: 0, else: 1
     end
   end
+
+  def detect_encoding(sms) when is_binary(sms) do
+    gsm_7bit_ext_chars =
+      "@£$¥èéùìòÇ\\nØø\\rÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\\\"#¤%&'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§¿abcdefghijklmnopqrstuvwxyzäöñüà" <>
+        "\\^{}\\\\\\[~\\]|€"
+
+    gsm_7bit_char_set = MapSet.new(String.codepoints(gsm_7bit_ext_chars))
+    sms_char_set = MapSet.new(String.codepoints(sms))
+
+    diff_count = MapSet.difference(sms_char_set, gsm_7bit_char_set) |> Enum.count()
+
+    cond do
+      diff_count == 0 ->
+        {:ok, "gsm_7bit"}
+
+      diff_count > 0 ->
+        {:ok, "unicode"}
+
+      true ->
+        {:error, "Can't detect encoding"}
+    end
+  end
 end
