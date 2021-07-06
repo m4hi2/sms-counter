@@ -77,4 +77,24 @@ Nulla consequat massa quis enim. Donec pede j") == 2
 জীবনযাত্রার পনেরো- আনা মূলধন নিয়ে আসে প্রকৃতির মালখানা থেকে") == 3
     end
   end
+
+  describe "automagically detect encoding of the message body" do
+    test "can detect GSM 7bit" do
+      assert SmsPartCounter.detect_encoding("abc dsc") == {:ok, "gsm_7bit"}
+      refute SmsPartCounter.detect_encoding("abc") == {:ok, "unicode"}
+    end
+
+    test "can detect Unicode" do
+      assert SmsPartCounter.detect_encoding("আমার") == {:ok, "unicode"}
+    end
+
+    test "can detect Unicode when mixed with GSM 7bit char" do
+      assert SmsPartCounter.detect_encoding("abc আমার") == {:ok, "unicode"}
+      assert SmsPartCounter.detect_encoding("আমার abc") == {:ok, "unicode"}
+    end
+
+    test "can detect backslash as GSM 7bit" do
+      assert SmsPartCounter.detect_encoding("\\") == {:ok, "gsm_7bit"}
+    end
+  end
 end
