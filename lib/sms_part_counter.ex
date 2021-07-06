@@ -24,6 +24,12 @@ defmodule SmsPartCounter do
     part_count(sms_char_count, 160, 153)
   end
 
+  @spec unicode_part_count(binary) :: integer()
+  def unicode_part_count(sms) when is_binary(sms) do
+    sms_char_count = count(sms)
+    part_count(sms_char_count, 70, 67)
+  end
+
   defp part_count(sms_char_count, single_count, multi_count) do
     cond do
       sms_char_count < single_count + 1 ->
