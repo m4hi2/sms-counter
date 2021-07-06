@@ -52,9 +52,8 @@ Nulla consequat massa quis enim. Donec pede j") == 2
 
   describe "Unicode 16bit encoding SMS part counter" do
     test "a 70 length message is considered 1 part" do
-      assert SmsPartCounter.unicode_part_count(
-               "জীবের মধ্যে সবচেয়ে সম্পূর্ণতা মানুষের। কিন্তু সবচেয়ে অসম্পূর্ণ হয়ে সে জন্মগ্র"
-             ) == 1
+      assert SmsPartCounter.unicode_part_count("জীবের মধ্যে সবচেয়ে সম্পূর্ণতা মানুষের। কিন্তু সবচেয়ে অসম্পূর্ণ হয়েয়") ==
+               1
     end
 
     test "a 20 length message is considered 1 part" do
@@ -68,9 +67,8 @@ Nulla consequat massa quis enim. Donec pede j") == 2
     end
 
     test "a 134 length message is considered 2 part" do
-      assert SmsPartCounter.unicode_part_count("জীবের মধ্যে সবচেয়ে সম্পূর্ণতা মানুষের। \
-কিন্তু সবচেয়ে অসম্পূর্ণ হয়ে সে জন্মগ্রহণ করে। \
-বাঘ ভালুক তার জীবনযাত্রার পনেরো- আনা মূলধন নিয়ে আসে প্রকৃতির মালখানা ") == 2
+      assert SmsPartCounter.unicode_part_count("মধ্যে সবচেয়ে সম্পূর্ণতা মানুষের। \
+কিন্তু সবচেয়ে অসম্পূর্ণ হয়ে সে জন্মগ্রহণ করে। বাঘ ভালুক তার জীবনযাত্রার পনেরো- আনা মূলধন নিয়ে আসে") == 2
     end
 
     test "a 138 length message is considered 3 part" do
