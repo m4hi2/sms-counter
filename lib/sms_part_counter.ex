@@ -62,4 +62,26 @@ defmodule SmsPartCounter do
         {:error, "Can't detect encoding"}
     end
   end
+
+  def analyze(sms) when is_binary(sms) do
+    {:ok, encoding} = detect_encoding(sms)
+
+    case encoding do
+      "gsm_7bit" ->
+        parts = gsm_part_count(sms)
+
+        %{
+          "encoding" => encoding,
+          "parts" => parts
+        }
+
+      "unicode" ->
+        parts = unicode_part_count(sms)
+
+        %{
+          "encoding" => encoding,
+          "parts" => parts
+        }
+    end
+  end
 end
