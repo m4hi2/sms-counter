@@ -46,7 +46,7 @@ defmodule SmsPartCounter do
     end
   end
 
-  @spec detect_encoding(binary) :: {:error, <<_::168>>} | {:ok, <<_::56, _::_*8>>}
+  @spec detect_encoding(binary) :: {:error, Sting.t()} | {:ok, String.t()}
   def detect_encoding(sms) when is_binary(sms) do
     sms_char_set = MapSet.new(String.codepoints(sms))
 
@@ -64,7 +64,7 @@ defmodule SmsPartCounter do
     end
   end
 
-  @spec analyze(binary) :: %{optional(<<_::40, _::_*24>>) => <<_::56, _::_*8>> | non_neg_integer}
+  @spec analyze(binary) :: %{String.t() => String.t(), String.t() => integer()}
   def analyze(sms) when is_binary(sms) do
     {:ok, encoding} = detect_encoding(sms)
 
