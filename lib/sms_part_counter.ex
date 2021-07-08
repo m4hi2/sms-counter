@@ -2,6 +2,11 @@ defmodule SmsPartCounter do
   @moduledoc """
   Module for detecting which encoding is being used and the character count of SMS text.
   """
+  gsm_7bit_ext_chars =
+    "@£$¥èéùìòÇ\\nØø\\rÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\\\"#¤%&'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§¿abcdefghijklmnopqrstuvwxyzäöñüà" <>
+      "\\^{}\\\\\\[~\\]|€"
+
+  @gsm_7bit_char_set MapSet.new(String.codepoints(gsm_7bit_ext_chars))
 
   @doc """
   Counts the characters in a string.
@@ -41,15 +46,11 @@ defmodule SmsPartCounter do
     end
   end
 
+  @spec detect_encoding(binary) :: {:error, <<_::168>>} | {:ok, <<_::56, _::_*8>>}
   def detect_encoding(sms) when is_binary(sms) do
-    gsm_7bit_ext_chars =
-      "@£$¥èéùìòÇ\\nØø\\rÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\\\"#¤%&'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§¿abcdefghijklmnopqrstuvwxyzäöñüà" <>
-        "\\^{}\\\\\\[~\\]|€"
-
-    gsm_7bit_char_set = MapSet.new(String.codepoints(gsm_7bit_ext_chars))
     sms_char_set = MapSet.new(String.codepoints(sms))
 
-    diff_count = MapSet.difference(sms_char_set, gsm_7bit_char_set) |> Enum.count()
+    diff_count = MapSet.difference(sms_char_set, @gsm_7bit_char_set) |> Enum.count()
 
     cond do
       diff_count == 0 ->
@@ -63,6 +64,7 @@ defmodule SmsPartCounter do
     end
   end
 
+  @spec analyze(binary) :: %{optional(<<_::40, _::_*24>>) => <<_::56, _::_*8>> | non_neg_integer}
   def analyze(sms) when is_binary(sms) do
     {:ok, encoding} = detect_encoding(sms)
 
