@@ -97,7 +97,7 @@ Nulla consequat massa quis enim. Donec pede j") == 2
       assert SmsPartCounter.detect_encoding("\\") == {:ok, "gsm_7bit"}
     end
 
-    test "can detect GSM 7bit with " do
+    test "can detect GSM 7bit with newline/linebreak" do
       assert SmsPartCounter.detect_encoding("HEllo
       hello") == {:ok, "gsm_7bit"}
     end
