@@ -50,13 +50,14 @@ defmodule SmsPartCounter do
   def detect_encoding(sms) when is_binary(sms) do
     sms_char_set = MapSet.new(String.codepoints(sms))
 
-    diff_count = MapSet.difference(sms_char_set, @gsm_7bit_char_set) |> Enum.count()
+    diff = MapSet.difference(sms_char_set, @gsm_7bit_char_set)
 
-    cond do
-      diff_count == 0 ->
+    empty_map_set?(diff)
+    |> case do
+      true ->
         {:ok, "gsm_7bit"}
 
-      diff_count > 0 ->
+      false ->
         {:ok, "unicode"}
 
     end
