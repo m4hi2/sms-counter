@@ -59,8 +59,16 @@ defmodule SmsPartCounter do
       diff_count > 0 ->
         {:ok, "unicode"}
 
-      true ->
-        {:error, "Can't detect encoding"}
+    end
+  end
+
+  defp empty_map_set?(map_set = %MapSet{}) do
+    empty_map_set = MapSet.new
+
+    map_set
+    |> case do
+    ^empty_map_set ->true
+    _ -> false
     end
   end
 
