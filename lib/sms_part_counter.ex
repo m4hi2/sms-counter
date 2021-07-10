@@ -28,6 +28,16 @@ defmodule SmsPartCounter do
     |> Enum.count()
   end
 
+  @doc """
+  Counts the part of a message that's encoded with GSM 7 Bit encoding.
+  The GSM 7 Bit Encoded messages have following length requirement:
+  Signle SMS Part Length: 160 Chars
+  Multi SMS Part Length: 153 Chars
+
+  ## Examples
+    iex> SmsPartCounter.gsm_part_count("asdf")
+    1
+  """
   @spec gsm_part_count(binary) :: integer()
   def gsm_part_count(sms) when is_binary(sms) do
     sms_char_count = count(sms)
