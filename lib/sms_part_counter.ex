@@ -3,8 +3,8 @@ defmodule SmsPartCounter do
   Module for detecting which encoding is being used and the character count of SMS text.
   """
   gsm_7bit_ext_chars =
-    "@£$¥èéùìòÇ\\nØø\\rÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\\\"#¤%&'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§¿abcdefghijklmnopqrstuvwxyzäöñüà" <>
-      "\\^{}\\\\\\[~\\]|€"
+    "@£$¥èéùìòÇ\nØø\rÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\"#¤%&'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§¿abcdefghijklmnopqrstuvwxyzäöñüà" <>
+      "^{}\\[~]|€"
 
   @gsm_7bit_char_set MapSet.new(String.codepoints(gsm_7bit_ext_chars))
 
