@@ -96,6 +96,11 @@ Nulla consequat massa quis enim. Donec pede j") == 2
     test "can detect backslash as GSM 7bit" do
       assert SmsPartCounter.detect_encoding("\\") == {:ok, "gsm_7bit"}
     end
+
+    test "can detect GSM 7bit with " do
+      assert SmsPartCounter.detect_encoding("HEllo
+      hello") == {:ok, "gsm_7bit"}
+    end
   end
 
   describe "analyze/1" do
