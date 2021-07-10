@@ -8,6 +8,11 @@ defmodule SmsPartCounter do
 
   @gsm_7bit_char_set MapSet.new(String.codepoints(gsm_7bit_ext_chars))
 
+  @gsm_single_length 160
+  @gsm_multi_length 153
+  @unicode_single_length 70
+  @unicode_multi_length 67
+
   @doc """
   Counts the characters in a string.
 
@@ -26,13 +31,13 @@ defmodule SmsPartCounter do
   @spec gsm_part_count(binary) :: integer()
   def gsm_part_count(sms) when is_binary(sms) do
     sms_char_count = count(sms)
-    part_count(sms_char_count, 160, 153)
+    part_count(sms_char_count, @gsm_single_length, @gsm_multi_length)
   end
 
   @spec unicode_part_count(binary) :: integer()
   def unicode_part_count(sms) when is_binary(sms) do
     sms_char_count = count(sms)
-    part_count(sms_char_count, 70, 67)
+    part_count(sms_char_count, @unicode_single_length, @unicode_multi_length)
   end
 
   defp part_count(sms_char_count, single_count, multi_count) do
