@@ -44,6 +44,16 @@ defmodule SmsPartCounter do
     part_count(sms_char_count, @gsm_single_length, @gsm_multi_length)
   end
 
+  @doc """
+  Counts the part of a message that's encoded with Unicode encoding.
+  The Unicode Encoded messages have following length requirement:
+  Signle SMS Part Length: 70 Chars
+  Multi SMS Part Length: 67 Chars
+
+  ## Examples
+    iex> SmsPartCounter.unicode_part_count("আমি")
+    1
+  """
   @spec unicode_part_count(binary) :: integer()
   def unicode_part_count(sms) when is_binary(sms) do
     sms_char_count = count(sms)
