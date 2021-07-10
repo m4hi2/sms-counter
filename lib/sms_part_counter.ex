@@ -71,6 +71,17 @@ defmodule SmsPartCounter do
     end
   end
 
+  @doc """
+  Detects the encoding of the SMS message based on the charset of GSM 7 bit Encoding.
+  It does a set difference between the characters in the sms and the gsm 7 bit encoding char set.
+
+  ## Examples
+    iex> SmsPartCounter.detect_encoding("adb abc")
+    {:ok, "gsm_7bit"}
+    iex> SmsPartCounter.detect_encoding("আমি")
+    {:ok, "unicode"}
+
+  """
   @spec detect_encoding(binary) :: {:ok | :error, Sting.t()}
   def detect_encoding(sms) when is_binary(sms) do
     sms_char_set = MapSet.new(String.codepoints(sms))
