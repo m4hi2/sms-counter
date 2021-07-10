@@ -109,6 +109,21 @@ defmodule SmsPartCounter do
     end
   end
 
+  @doc """
+  Detects the encoding of the SMS then counts the part, returns all information
+  as a map of the following format:
+  %{
+    "encoding" => encoding,
+    "parts" => part count
+  }
+
+  ## Examples
+    iex> SmsPartCounter.analyze("abc")
+    %{
+      "encoding" => "gsm_7bit",
+      "parts" => 1
+    }
+  """
   @spec analyze(binary) :: %{String.t() => String.t(), String.t() => integer()}
   def analyze(sms) when is_binary(sms) do
     {:ok, encoding} = detect_encoding(sms)
