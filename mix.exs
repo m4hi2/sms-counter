@@ -30,7 +30,7 @@ defmodule SmsPartCounter.MixProject do
   end
 
   defp description() do
-    "Counts the character usage of a SMS using GSM7Bit/UCS-2 encoding charset."
+    "SMS Part Counter: Counts the character usage of a SMS using GSM7Bit/UCS-2 encoding charset."
   end
 
   defp package() do
