@@ -1,4 +1,4 @@
-# SmsPartCounter ![Testing](https://github.com/w4hs/sms-counter/workflows/Elixir%20CI/badge.svg?branch=master)
+# SmsPartCounter ![Testing](https://github.com/m4hi2/sms-counter/workflows/Elixir%20CI/badge.svg?branch=master)
 
 **TODO: Add description**
 
