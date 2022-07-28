@@ -18,10 +18,11 @@ defmodule SmsPartCounter do
 
   ## Examples
 
-    iex> SmsPartCounter.count("Hello")
-    5
-    iex> SmsPartCounter.count("আম")
-    2
+      iex> SmsPartCounter.count("Hello")
+      5
+      iex> SmsPartCounter.count("আম")
+      2
+
   """
   @spec count(binary) :: integer()
   def count(str) when is_binary(str) do
@@ -37,8 +38,9 @@ defmodule SmsPartCounter do
 
   ## Examples
 
-    iex> SmsPartCounter.gsm_part_count("asdf")
-    1
+      iex> SmsPartCounter.gsm_part_count("asdf")
+      1
+
   """
   @spec gsm_part_count(binary) :: integer()
   def gsm_part_count(sms) when is_binary(sms) do
@@ -54,8 +56,9 @@ defmodule SmsPartCounter do
 
   ## Examples
 
-    iex> SmsPartCounter.unicode_part_count("আমি")
-    1
+      iex> SmsPartCounter.unicode_part_count("আমি")
+      1
+
   """
   @spec unicode_part_count(binary) :: integer()
   def unicode_part_count(sms) when is_binary(sms) do
@@ -80,10 +83,10 @@ defmodule SmsPartCounter do
 
   ## Examples
 
-    iex> SmsPartCounter.detect_encoding("adb abc")
-    {:ok, "gsm_7bit"}
-    iex> SmsPartCounter.detect_encoding("আমি")
-    {:ok, "unicode"}
+      iex> SmsPartCounter.detect_encoding("adb abc")
+      {:ok, "gsm_7bit"}
+      iex> SmsPartCounter.detect_encoding("আমি")
+      {:ok, "unicode"}
 
   """
   @spec detect_encoding(binary) :: {:ok | :error, Sting.t()}
@@ -116,18 +119,20 @@ defmodule SmsPartCounter do
   @doc """
   Detects the encoding of the SMS then counts the part, returns all information
   as a map of the following format:
-  %{
-    "encoding" => encoding,
-    "parts" => part count
-  }
+
+      %{
+        "encoding" => encoding,
+        "parts" => part count
+      }
 
   ## Examples
 
-    iex> SmsPartCounter.count_parts("abc")
-    %{
-      "encoding" => "gsm_7bit",
-      "parts" => 1
-    }
+      iex> SmsPartCounter.count_parts("abc")
+      %{
+        "encoding" => "gsm_7bit",
+        "parts" => 1
+      }
+
   """
   @spec count_parts(binary) :: %{String.t() => String.t(), String.t() => integer()}
   def count_parts(sms) when is_binary(sms) do
