@@ -7,7 +7,11 @@ defmodule SmsPartCounter.MixProject do
       version: "0.1.2",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description: description(),
+      package: package(),
+      source_url: "https://github.com/m4hi2/sms-counter",
+      homepage_url: "https://github.com/m4hi2/sms-counter"
     ]
   end
 
@@ -23,6 +27,17 @@ defmodule SmsPartCounter.MixProject do
     [
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+    ]
+  end
+
+  defp description() do
+    "Counts the character usage of a SMS using GSM7Bit/UCS-2 encoding charset."
+  end
+
+  defp package() do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/m4hi2/sms-counter"}
     ]
   end
 end
