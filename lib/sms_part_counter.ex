@@ -17,6 +17,7 @@ defmodule SmsPartCounter do
   Counts the characters in a string.
 
   ## Examples
+
     iex> SmsPartCounter.count("Hello")
     5
     iex> SmsPartCounter.count("আম")
@@ -35,6 +36,7 @@ defmodule SmsPartCounter do
   Multi SMS Part Length: 153 Chars
 
   ## Examples
+
     iex> SmsPartCounter.gsm_part_count("asdf")
     1
   """
@@ -51,6 +53,7 @@ defmodule SmsPartCounter do
   Multi SMS Part Length: 67 Chars
 
   ## Examples
+
     iex> SmsPartCounter.unicode_part_count("আমি")
     1
   """
@@ -76,6 +79,7 @@ defmodule SmsPartCounter do
   It does a set difference between the characters in the sms and the gsm 7 bit encoding char set.
 
   ## Examples
+
     iex> SmsPartCounter.detect_encoding("adb abc")
     {:ok, "gsm_7bit"}
     iex> SmsPartCounter.detect_encoding("আমি")
@@ -118,6 +122,7 @@ defmodule SmsPartCounter do
   }
 
   ## Examples
+
     iex> SmsPartCounter.count_parts("abc")
     %{
       "encoding" => "gsm_7bit",
