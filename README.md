@@ -21,7 +21,7 @@ end
 ## Usage
 
 ```elixir
-iex> SmsPartCounter.analyze("blah blah blah")
+iex> SmsPartCounter.count_parts("blah blah blah")
 %{
   "encoding" => "gsm_7bit",
   "parts" => 1

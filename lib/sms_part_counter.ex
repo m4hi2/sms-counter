@@ -118,14 +118,14 @@ defmodule SmsPartCounter do
   }
 
   ## Examples
-    iex> SmsPartCounter.analyze("abc")
+    iex> SmsPartCounter.count_parts("abc")
     %{
       "encoding" => "gsm_7bit",
       "parts" => 1
     }
   """
-  @spec analyze(binary) :: %{String.t() => String.t(), String.t() => integer()}
-  def analyze(sms) when is_binary(sms) do
+  @spec count_parts(binary) :: %{String.t() => String.t(), String.t() => integer()}
+  def count_parts(sms) when is_binary(sms) do
     {:ok, encoding} = detect_encoding(sms)
 
     case encoding do
