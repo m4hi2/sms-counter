@@ -13,7 +13,7 @@ by adding `sms_part_counter` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:sms_part_counter, "~> 0.1.2"}
+    {:sms_part_counter, "~> 0.1.3"}
   ]
 end
 ```
