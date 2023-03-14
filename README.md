@@ -12,7 +12,7 @@ The package can be installed by adding `sms_part_counter` to your list of depend
 ```elixir
 def deps do
   [
-    {:sms_part_counter, git: "https://github.com/rum-and-code/sms-counter.git", tag: "v0.1.7"},
+    {:sms_part_counter, "~> 0.1.7"}
   ]
 end
 ```
@@ -20,7 +20,7 @@ end
 ## Usage
 
 ```elixir
-iex> SmsPartCounter.count_parts("Lorem ipsum dolor sit amet, consectetur adipiscing elit")
+iex> SmsPartCounter.count_parts("blah blah blah")
 %{
   "encoding" => "gsm_7bit",
   "parts" => 1

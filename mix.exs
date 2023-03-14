@@ -10,8 +10,8 @@ defmodule SmsPartCounter.MixProject do
       deps: deps(),
       description: description(),
       package: package(),
-      source_url: "https://github.com/rum-and-code/sms-counter",
-      homepage_url: "https://github.com/rum-and-code/sms-counter"
+      source_url: "https://github.com/m4hi2/sms-counter",
+      homepage_url: "https://github.com/m4hi2/sms-counter"
     ]
   end
 
@@ -35,9 +35,9 @@ defmodule SmsPartCounter.MixProject do
 
   defp package() do
     [
-      maintainers: ["Rum&Code"],
+      maintainers: ["m4hi2", "Rum&Code"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/rum-and-code/sms-counter"}
+      links: %{"GitHub" => "https://github.com/m4hi2/sms-counter"}
     ]
   end
 end
