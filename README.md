@@ -12,7 +12,7 @@ The package can be installed by adding `sms_part_counter` to your list of depend
 ```elixir
 def deps do
   [
-    {:sms_part_counter, "~> 0.1.3"}
+    {:sms_part_counter, "~> 0.1.7"}
   ]
 end
 ```

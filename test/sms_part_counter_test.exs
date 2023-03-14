@@ -21,6 +21,14 @@ defmodule SmsPartCounterTest do
       assert SmsPartCounter.count(" ") == 1
       assert SmsPartCounter.count("আমি তুমি") == 8
     end
+
+    test "can count emoji characters" do
+      assert SmsPartCounter.count("👨‍👨‍👧‍👧") == 11
+      assert SmsPartCounter.count("😃") == 2
+      assert SmsPartCounter.count("😃🥃💻") == 6
+      assert SmsPartCounter.count("👨‍👨‍👧‍👧😃") == 13
+      assert SmsPartCounter.count("👨‍👨‍👧‍👧😃👨‍👨‍👧‍👧") == 24
+    end
   end
 
   describe "GSM 7bit encoding SMS part counter" do
