@@ -26,8 +26,11 @@ defmodule SmsPartCounter do
   """
   @spec count(binary) :: integer()
   def count(str) when is_binary(str) do
-    String.codepoints(str)
-    |> Enum.count()
+    codepoints = String.to_charlist(str)
+
+    codepoints
+    |> Enum.count(fn cp -> cp > 0xFFFF end)
+    |> then(&(&1 + Enum.count(codepoints)))
   end
 
   @doc """
